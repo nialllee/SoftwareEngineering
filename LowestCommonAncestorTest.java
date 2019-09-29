@@ -21,5 +21,14 @@ public class LowestCommonAncestorTest{
     
   }  
   
+  @Test
+  public void test2Nodes(){
+    
+    LowestCommonAncestor tree = new LowestCommonAncestor();
+    tree.root = new Node(1);
+    tree.root.left = new Node(2);
+    assertEquals("Finds the Lowest Common Ancestor of a one root & one child tree ", 1, tree.findLowestCommonAncestor(1, 2).data);
+    
+  }
   
   
