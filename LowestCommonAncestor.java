@@ -1,36 +1,20 @@
-public class lowestCommonAncestor{
+import java.util.*;
+  
+public class LowestCommonAncestor<T> {
 	
-	class Node{
-
-	Node root;
-
-	Node findLCA(int node1, int node2) {
-
-		return findLCA(root, node1, node2);
-	}
-	
-	Node findLowestCommonAncestor(Node node, int node1, int node2) {
-
-		if (node == null) {
-			return null;
-		}
-
-		if (node.data == node1 || node.data == node2) {
-			return node;
-		}
-
-		Node left = findLowestCommonAncestor(node.left, node1, node2);
-		Node right = findLowestCommonAncestor(node.right, node1, node2);
-
-		if (left != null && right != null) {
-			return node;
-		}
-
-		if (left != null) {
-			return left;
-		} else {
-			return right;
-		}
-
-	}
-}
+	  Node_DAG<T> root;
+	  List<Node_DAG<T>> DFS(Node_DAG<T> node, Node_DAG<T> searchNode, List<Node_DAG<T>> list, Stack<Node_DAG<T>> stack){
+	           
+		  stack.push(node);
+		   for(Node_DAG<T> n : node.point){
+			  
+			  if(n.equals(searchNode)){
+				  
+				  list.addAll(stack);
+				  return list;
+			  }	  
+			  DFS(node, searchNode, list, stack);
+		  }	  
+		  stack.pop();
+		  return list;
+	  }
