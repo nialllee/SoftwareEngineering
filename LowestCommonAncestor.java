@@ -18,3 +18,8 @@ public class LowestCommonAncestor<T> {
 		  stack.pop();
 		  return list;
 	  }
+	
+	  public Node_DAG<T> LowestCommonAncestor(Node_DAG<T> node1, Node_DAG<T> node2) {
+
+		  return LowestCommonAncestor_DAG(root, node1, node2);
+	  }
