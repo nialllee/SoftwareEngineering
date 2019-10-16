@@ -59,10 +59,10 @@ public class LowestCommonAncestorTest{
     tree.root.right.left = new Node(10);
     tree.root.right.right = new Node(11);
 	  
-    assertEquals("LCA of 8 and 9: ", 6, tree.findLCA(8, 9).data);
-    assertEquals("LCA of 10 and 11: ", 7, tree.findLCA(10, 11).data);
-    assertEquals("LCA of 6 and 7: ", 5, tree.findLCA(6, 7).data);	
-    assertEquals("LCA of 8 and 11: ", 5, tree.findLCA(8, 11).data);	  
+    assertEquals("LCA of 8 and 9: ", 6, tree.findLowestCommonAncestor(8, 9).data);
+    assertEquals("LCA of 10 and 11: ", 7, tree.findLowestCommonAncestor(10, 11).data);
+    assertEquals("LCA of 6 and 7: ", 5, tree.findLowestCommonAncestor(6, 7).data);	
+    assertEquals("LCA of 8 and 11: ", 5, tree.findLowestCommonAncestor(8, 11).data);	  
 	  
 }  
   
