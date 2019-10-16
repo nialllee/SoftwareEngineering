@@ -131,7 +131,7 @@ public class DAG
 	}
 	
 	//Method to implement lowest common ancestor
-	public int findLCA(int v, int w)
+	public int findLowestCommonAncestor(int v, int w)
 	{
 		findCycle(0);
 		
