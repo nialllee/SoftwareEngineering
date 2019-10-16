@@ -63,3 +63,24 @@ public class LowestCommonAncestorTest {
 		assertEquals("LowestCommonAncestor of 2 and 3 is 1:", testDAGList.get(0), testDAG.LowestCommonAncestor(testDAGList.get(1), testDAGList.get(2)));
 	}
 		
+// 	@Test 
+// 	public void testForOneNodeTree()
+// 	{
+// 		LowestCommonAncestor<Integer> testDAG = new LowestCommonAncestor<>();
+// 		testDag.root = new Node_DAG<Integer>(1);
+// 		assertEquals(testDag.LowestCommonAncestor(testDag.root, testDag.root), testDag.root);
+		
+// 		Node_DAG<Integer> 
+		
+	@Test
+	public void testTopology(){
+		
+		LowestCommonAncestor<Integer> testDAG = new LowestCommonAncestor<>();
+		ArrayList<Node_DAG<Integer>> testDAGList = new ArrayList<>();
+		
+		for(int i=0; i<5; i++){
+			
+			testDAGList.add(new Node_DAG<Integer>(i));
+		}
+		
+		testDAG.root = testDAGList.get(0); 
