@@ -1,86 +1,108 @@
-		//		1
-		//	2		3
-		//    4   5   	     6     7
-
 import static org.junit.Assert.*;
 import org.junit.Test;
-import java.util.ArrayList;
 
-
-
-public class LowestCommonAncestorTest {
-	
-	@Test
-	public void testEmptyTree(){
-		
-		LowestCommonAncestor<Integer> testDAG = new LowestCommonAncestor<>();
-		ArrayList<Node_DAG<Integer>> testDAGList = new ArrayList<>();
-		
-		for(int i=0; i<7; i++){
-			
-			testDAGList.add(new Node_DAG<Integer>(i));
-		}
-		
-		assertNull("Checks LowestCommonAncestor of empty tree is null:", testDAG.LowestCommonAncestor(testDAGList.get(5), testDAGList.get(6)));
-	}	
+public class DAG_Test {
 
 	@Test
-	public void testConstructor(){
+	public void testDAG()
+	{
+		DAG graph = new DAG(10);
 		
-		LowestCommonAncestor<Integer> testDAG = new LowestCommonAncestor<>();
-		ArrayList<Node_DAG<Integer>> testDAGList = new ArrayList<>();
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(2, 5);
+		graph.addEdge(4, 6);
+		graph.addEdge(4, 7);
 		
-		for(int i=0; i<7; i++){
-			
-			testDAGList.add(new Node_DAG<Integer>(i));
-		}
-		
-		testDAG.root = testDAGList.get(0); //root = 1
-		
-		assertNotNull("Checks if DAG is null after adding the root:", testDAG);
+		assertEquals(1, graph.indegree(4));
+		assertEquals(2, graph.outdegree(4));
+		assertEquals(5, graph.E());
+		assertEquals(10, graph.V());
+		String adj = "[6, 7]";
+		assertEquals(adj, graph.adj(4).toString());
 	}
 	
-	@Test // index so add 1
-	public void testForCommonAncestor(){
+	@Test(expected=Exception.class)
+	public void exceptionTest(){
 		
-		LowestCommonAncestor<Integer> testDAG = new LowestCommonAncestor<>();
-		ArrayList<Node_DAG<Integer>> testDAGList = new ArrayList<>();
+		//Can't make a directed graph with less than 0 vertices
 		
-		for(int i=0; i<7; i++){
-			
-			testDAGList.add(new Node_DAG<Integer>(i));
-		}
-		testDAG.root = testDAGList.get(0); 
-		testDAGList.get(0).addEdge(testDAGList.get(1));
-		testDAGList.get(0).addEdge(testDAGList.get(2));
-		testDAGList.get(1).addEdge(testDAGList.get(3));
-		testDAGList.get(1).addEdge(testDAGList.get(4));
-		testDAGList.get(2).addEdge(testDAGList.get(5));
-		testDAGList.get(2).addEdge(testDAGList.get(6));
-		
-		assertEquals("LowestCommonAncestor of 4 and 5 is 2:", testDAGList.get(1), testDAG.LowestCommonAncestor(testDAGList.get(3), testDAGList.get(4)));
-		assertEquals("LowestCommonAncestor of 6 and 7 is 3:", testDAGList.get(2), testDAG.LowestCommonAncestor(testDAGList.get(5), testDAGList.get(6)));
-		assertEquals("LowestCommonAncestor of 2 and 3 is 1:", testDAGList.get(0), testDAG.LowestCommonAncestor(testDAGList.get(1), testDAGList.get(2)));
+		DAG graph = new DAG(-5);
 	}
-		
-// 	@Test 
-// 	public void testForOneNodeTree()
-// 	{
-// 		LowestCommonAncestor<Integer> testDAG = new LowestCommonAncestor<>();
-// 		testDag.root = new Node_DAG<Integer>(1);
-// 		assertEquals(testDag.LowestCommonAncestor(testDag.root, testDag.root), testDag.root);
-		
-// 		Node_DAG<Integer> 
-		
+	
 	@Test
-	public void testTopology(){
+	public void addEdge()
+	{
+		DAG graph = new DAG(5);
 		
-		LowestCommonAncestor<Integer> testDAG = new LowestCommonAncestor<>();
-		ArrayList<Node_DAG<Integer>> testDAGList = new ArrayList<>();
+		graph.addEdge(1,2);
+
+		//As negative, will print a system error and not addEdge
+		graph.addEdge(-1, -6);
 		
-		for(int i=0; i<5; i++){
-			
-			testDAGList.add(new Node_DAG<Integer>(i));
-		}
+		//This will not addEdge as 12 > 5
+		graph.addEdge(3, 12);
 		
-		testDAG.root = testDAGList.get(0); 
+		assertEquals(1, graph.E());
+	}
+	
+	@Test
+	public void testIndegree()
+	{
+		DAG graph = new DAG(5);
+		
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 3);
+		
+		assertEquals(1, graph.indegree(3));
+	
+		assertEquals(-1, graph.indegree(5));
+	}
+	
+	@Test
+	public void testOutdegree()
+	{
+		DAG graph = new DAG(5);
+		
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 3);
+		
+		assertEquals(1, graph.outdegree(3));
+	
+		assertEquals(-1, graph.outdegree(5));
+	}
+	
+	@Test 
+	public void testV()
+	{
+		DAG graph = new DAG(6);
+		assertEquals(6, graph.V());
+	}
+	
+	@Test
+	public void testE(){
+		
+		DAG graph = new DAG(5);
+		
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 3);
+		
+		assertEquals(3, graph.E());
+	}
+	
+	@Test
+	public void testAdj()
+	{
+		DAG graph = new DAG(5);
+		
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 3);
+		graph.addEdge(4, 3);
+		
+		String adj = "[4]";
+		assertEquals(adj, graph.adj(2).toString());
+	}
