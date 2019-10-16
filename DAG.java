@@ -1,3 +1,6 @@
+//niall lee
+//17336146
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -33,7 +36,6 @@ public class DAG
 			adj[v] = new ArrayList<Integer>();
 		}
 	}
-	
 	//Returns current vertex
 	public int V()
 	{
@@ -45,7 +47,7 @@ public class DAG
 		return E;
 	}
 	
-	//Adds directed edge from v to w
+	//directed edge from v to w added
 	public void addEdge(int v, int w)
 	{
 		if((validateVertex(v) > 0) && (validateVertex(w) > 0))
@@ -71,8 +73,7 @@ public class DAG
 			return 1;
 		}
 	}
-	
-	//Returns number of directed edges to vertex v
+	// number of directed edges to vertex v
 	public int indegree(int v)
 	{
 		if(validateVertex(v) > 0)
@@ -99,7 +100,7 @@ public class DAG
 		}
 	}
 	
-	//Returns the adjacent vertices to v
+	// vertices adjacent to v
 	public Iterable<Integer> adj(int v)
 	{
 		return adj[v];
@@ -130,7 +131,7 @@ public class DAG
 		stack[v] = false;
 	}
 	
-	//Method to implement lowest common ancestor
+	//implement lca
 	public int findLowestCommonAncestor(int v, int w)
 	{
 		findCycle(0);
@@ -181,7 +182,7 @@ public class DAG
 		}
 	}
 	
-	//Prints BFS(Breadth-First search) from source s
+	//Prints BFS from source s
 	public ArrayList<Integer> BFS(int s)
 	{
 		ArrayList<Integer> order = new ArrayList<Integer>();
