@@ -7,7 +7,6 @@ public class DAG_Test {
 	public void testDAG()
 	{
 		DAG graph = new DAG(10);
-		
 		graph.addEdge(1, 2);
 		graph.addEdge(2, 4);
 		graph.addEdge(2, 5);
@@ -34,12 +33,9 @@ public class DAG_Test {
 	public void addEdge()
 	{
 		DAG graph = new DAG(5);
-		
 		graph.addEdge(1,2);
-
 		//As negative, will print a system error and not addEdge
 		graph.addEdge(-1, -6);
-		
 		//This will not addEdge as 12 > 5
 		graph.addEdge(3, 12);
 		
@@ -50,13 +46,11 @@ public class DAG_Test {
 	public void testIndegree()
 	{
 		DAG graph = new DAG(5);
-		
 		graph.addEdge(1, 2);
 		graph.addEdge(2, 4);
 		graph.addEdge(3, 3);
 		
 		assertEquals(1, graph.indegree(3));
-	
 		assertEquals(-1, graph.indegree(5));
 	}
 	
@@ -64,7 +58,6 @@ public class DAG_Test {
 	public void testOutdegree()
 	{
 		DAG graph = new DAG(5);
-		
 		graph.addEdge(1, 2);
 		graph.addEdge(2, 4);
 		graph.addEdge(3, 3);
@@ -85,7 +78,6 @@ public class DAG_Test {
 	public void testE(){
 		
 		DAG graph = new DAG(5);
-		
 		graph.addEdge(1, 2);
 		graph.addEdge(2, 4);
 		graph.addEdge(3, 3);
@@ -94,10 +86,9 @@ public class DAG_Test {
 	}
 	
 	@Test
-	public void testAdj()
+	public void testAdjacency()
 	{
 		DAG graph = new DAG(5);
-		
 		graph.addEdge(1, 2);
 		graph.addEdge(2, 4);
 		graph.addEdge(3, 3);
@@ -105,4 +96,29 @@ public class DAG_Test {
 		
 		String adj = "[4]";
 		assertEquals(adj, graph.adj(2).toString());
+	}
+	@Test
+	public void testCycle()
+	{
+		DAG graph = new DAG(10);
+		graph.addEdge(0, 1);
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 0);
+		graph.addEdge(2, 3);
+		graph.addEdge(3, 4);
+		
+		graph.findCycle(0);
+		assertTrue(graph.hasCycle());
+	}
+	
+	@Test
+	public void testAcyclicGraph()
+	{
+		DAG graph = new DAG(10);
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 4);
+		graph.addEdge(3, 3);
+		
+		graph.findCycle(1);
+		assertFalse(graph.hasCycle());
 	}
