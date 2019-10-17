@@ -1,3 +1,7 @@
+//Niall Lee
+//17336146
+//leen1@tcd.ie
+
 class Node {
 
 	int data;
