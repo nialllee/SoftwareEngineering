@@ -144,3 +144,30 @@ public class DAG_Test {
 		assertEquals(8, graph.findLowestCommonAncestor(7, 8));
 		assertEquals(6, graph.findLowestCommonAncestor(6, 7));
 	}
+	
+	@Test
+	public void testLCAWithEmptyDAG()
+	{
+		DAG graph = new DAG(10);
+		assertEquals(-1, graph.findLowestCommonAncestor(0, 5));
+		assertEquals(-1, graph.findLowestCommonAncestor(0, 8));
+		assertEquals(-1, graph.findLowestCommonAncestor(0, 0));
+	}
+	
+	@Test
+	public void testLCAWithNonDAG()
+	{
+		DAG graph = new DAG(10);
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 3);
+		graph.addEdge(3, 2);
+		graph.addEdge(2, 0);
+		graph.addEdge(2, 4);
+		
+		assertEquals(-1, graph.findLowestCommonAncestor(3, 2));
+		assertEquals(-1, graph.findLowestCommonAncestor(2, 4));
+		assertEquals(-1, graph.findLowestCommonAncestor(1, 3));
+		assertEquals(-1, graph.findLowestCommonAncestor(0, 3));
+		assertEquals(-1, graph.findLowestCommonAncestor(1, 2));
+		
+	}
