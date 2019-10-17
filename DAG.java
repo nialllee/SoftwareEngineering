@@ -1,5 +1,6 @@
-//niall lee
+//Niall Lee
 //17336146
+//leen1@tcd.ie
 
 import java.util.ArrayList;
 import java.util.Iterator;
