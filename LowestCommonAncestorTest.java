@@ -1,3 +1,7 @@
+//Niall Lee
+//17336146
+//leen1@tcd.ie
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 
